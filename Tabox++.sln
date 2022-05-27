@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Blend for Visual Studio Version 16
+VisualStudioVersion = 16.0.32428.217
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tabox++", "Tabox++\Tabox++.csproj", "{1F93E54E-5D4C-4E82-A9F5-58EBC856E51D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1F93E54E-5D4C-4E82-A9F5-58EBC856E51D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F93E54E-5D4C-4E82-A9F5-58EBC856E51D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F93E54E-5D4C-4E82-A9F5-58EBC856E51D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F93E54E-5D4C-4E82-A9F5-58EBC856E51D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EE24FAD1-C525-4753-B7AA-556579EF5C31}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,21 @@
+﻿<Application x:Class="Tabox__.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Tabox__"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/ListViewStyle1.xaml"/>
+                <ResourceDictionary Source="/ButtonStyle1.xaml"/>
+                <ResourceDictionary Source="/ListViewItemStyle2.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+
+
+            <FontFamily x:Key="icon">Assets/Fonts/#Segoe Fluent Icons</FontFamily>
+        </ResourceDictionary>
+
+    </Application.Resources>
+</Application>
