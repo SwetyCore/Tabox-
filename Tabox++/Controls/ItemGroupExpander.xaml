@@ -2,16 +2,28 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:converters="clr-namespace:Tabox__.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Expander>
+    <UserControl.Resources>
+        <converters:ExpanderWidthCac x:Key="ExpanderWidthCac"/>
+    </UserControl.Resources>
+    <Expander x:Name="exp">
         <Expander.Header>
-            <StackPanel>
+            <Grid Width="{Binding ElementName=exp,Path=ActualWidth,Converter={StaticResource ExpanderWidthCac}}">
                 <TextBlock Text="测试分组" FontSize="24"/>
-            </StackPanel>
+                <Button Style="{StaticResource ButtonStyle1}" Padding="10" FontFamily="{StaticResource icon}" HorizontalAlignment="Right">
+                    &#xe710;
+                </Button>
+                
+            </Grid>
         </Expander.Header>
         <ListView Background="Transparent" BorderThickness="0">
+            <ListView.ContextMenu >
+                <ContextMenu>
+                    <MenuItem Header="删除" Icon="🗑️" />
+                </ContextMenu>
+            </ListView.ContextMenu>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel/>
@@ -41,6 +53,7 @@
             </ListViewItem>
 
             <ListViewItem Style="{DynamicResource ListViewItemStyle2}">
+
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
