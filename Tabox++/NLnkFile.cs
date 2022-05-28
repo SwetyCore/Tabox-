@@ -36,6 +36,7 @@ namespace Tabox__
                     SourceFile=item.SourceFile,
                     LocalPath=item.LocalPath,
                     Arguments=item.Arguments,
+
                 });
             }
             return r;

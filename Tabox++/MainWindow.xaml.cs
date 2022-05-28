@@ -107,22 +107,22 @@ namespace Tabox__
                     }
                 }
 
-                //foreach (var item in adpdi.GetFiles())
-                //{
-                //    Console.WriteLine(item.FullName);
-                //    try
-                //    {
-                //        var r = JumpList.JumpList.LoadAutoJumplist(item.FullName);
-                //        Console.WriteLine(r);
+                foreach (var item in adpdi.GetFiles())
+                {
+                    Console.WriteLine(item.FullName);
+                    try
+                    {
+                        var r = JumpList.JumpList.LoadAutoJumplist(item.FullName);
+                        Console.WriteLine(r);
 
-                //        ProjectGroups.Add(new ProjectGroup { AppName = r.AppId.AppId, LnkFiles = GetLnks(r.DestListEntries) });
+                        ProjectGroups.Add(new ProjectGroup { AppName = r.AppId.AppId, LnkFiles = GetLnks(r.DestListEntries) });
 
-                //    }
-                //    catch (Exception)
-                //    {
+                    }
+                    catch (Exception)
+                    {
 
-                //    }
-                //}
+                    }
+                }
 
 
             }
