@@ -16,14 +16,41 @@
             <RowDefinition Height="72"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListView Background="#001529" BorderThickness="0" Grid.RowSpan="2" SelectedIndex="0">
-            <ListViewItem Style="{DynamicResource ListViewItemStyle1}" Padding="0" HorizontalAlignment="Center" Height="128" Width="250">
+        <Grid  Grid.RowSpan="2" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Background="#001529" Style="{StaticResource ButtonStyle1}">
                 <StackPanel Orientation="Vertical">
                     <svgc:SvgViewbox HorizontalAlignment="Center" IsHitTestVisible="False"  Source="Assets\Images\favicon.svg" Margin="4" Height="56" Width="56"/>
                     <TextBlock Text="    Tabox++" FontSize="30"  VerticalAlignment="Center" Foreground="White"/>
                 </StackPanel>
-            </ListViewItem>
-        </ListView>
+            </Button>
+            <ListView SelectedValuePath="LnkFiles" Grid.Row="1" Background="#001529" BorderThickness="0" ItemsSource="{Binding ProjectGroups}" SelectionChanged="ListView_SelectionChanged">
+                <ListView.Resources>
+                    <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemStyle1}">
+                        <!--<Setter Property="Style" Value="{DynamicResource ListViewItemStyle1}"/>-->
+                        <Setter Property="Padding" Value="0"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="Height" Value="64"/>
+                        <Setter Property="Width" Value="250"/>
+                    </Style>
+                </ListView.Resources>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <svgc:SvgViewbox HorizontalAlignment="Center" IsHitTestVisible="False"  Source="Assets\Images\favicon.svg" Margin="4" Height="56" Width="56"/>
+                            <TextBlock Text="{Binding AppName}" FontSize="30"  VerticalAlignment="Center" Foreground="White"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <!--<ListViewItem Style="{DynamicResource ListViewItemStyle1}" Padding="0" HorizontalAlignment="Center" Height="64" Width="250">
+
+                </ListViewItem>-->
+            </ListView>
+
+        </Grid>
 
         <Grid Grid.Row="0" Grid.Column="1" Background="#FFAABBC8">
             <TextBlock VerticalAlignment="Center" FontSize="30" Foreground="White" Margin="20 0">
