@@ -12,7 +12,7 @@
     </Page.Resources>
 
     <Grid>
-        <ListView Background="#f0f2f5" ItemsSource="{Binding Projects}" x:Name="lv" MouseDoubleClick="Button_MouseDoubleClick">
+        <ListView Style="{DynamicResource ListViewStyle1}" Background="#f0f2f5" ItemsSource="{Binding Projects}" x:Name="lv" MouseDoubleClick="Button_MouseDoubleClick">
             <ListView.Resources>
                 <Style TargetType="ListViewItem" >
                     <Setter Property="Template" Value="{StaticResource ListViewItemTemplate1}"/>

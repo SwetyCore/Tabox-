@@ -8,9 +8,9 @@
     <UserControl.Resources>
         <converters:ExpanderWidthCac x:Key="ExpanderWidthCac"/>
     </UserControl.Resources>
-    <Expander x:Name="exp">
+    <Expander x:Name="exp" HorizontalAlignment="Stretch">
         <Expander.Header>
-            <Grid Width="{Binding ElementName=exp,Path=ActualWidth,Converter={StaticResource ExpanderWidthCac}}">
+            <Grid>
                 <TextBlock Text="测试分组" FontSize="24"/>
                 <Button Style="{StaticResource ButtonStyle1}" Padding="10" FontFamily="{StaticResource icon}" HorizontalAlignment="Right">
                     &#xe710;
