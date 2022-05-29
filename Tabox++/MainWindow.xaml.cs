@@ -106,7 +106,7 @@ namespace Tabox__
 
                     }
                 }
-
+#if !DEBUG
                 foreach (var item in adpdi.GetFiles())
                 {
                     Console.WriteLine(item.FullName);
@@ -123,7 +123,7 @@ namespace Tabox__
 
                     }
                 }
-
+#endif
 
             }
 

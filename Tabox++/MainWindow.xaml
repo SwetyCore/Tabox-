@@ -42,6 +42,8 @@
                         <StackPanel Orientation="Horizontal">
                             <svgc:SvgViewbox HorizontalAlignment="Center" IsHitTestVisible="False"  Source="Assets\Images\favicon.svg" Margin="4" Height="56" Width="56"/>
                             <TextBlock Text="{Binding AppName}" FontSize="30"  VerticalAlignment="Center" Foreground="White"/>
+                            <!--<TextBox Text="{Binding AppName}" FontSize="30" Background="Transparent"  VerticalAlignment="Center" Foreground="White"/>-->
+
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -60,7 +62,7 @@
                 &#xe713;
             </Button>
         </Grid>
-        <Frame Background="#f0f2f5" Grid.Column="1" x:Name="frame" Grid.Row="1" Source="Pages/Home.xaml">
+        <Frame NavigationUIVisibility="Hidden" Background="#f0f2f5" Grid.Column="1" x:Name="frame" Grid.Row="1" Source="Pages/Home.xaml">
             
         </Frame>
         

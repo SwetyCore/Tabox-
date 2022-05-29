@@ -3,33 +3,43 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Tabox__.Pages"
+      xmlns:local="clr-namespace:Tabox__.Pages" xmlns:converters="clr-namespace:Tabox__.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ProjectView">
+    <Page.Resources>
+        <converters:IconGetter x:Key="IconGetter"/>
+    </Page.Resources>
 
     <Grid>
-        <ListView ItemsSource="{Binding Projects}" x:Name="lv" MouseDoubleClick="Button_MouseDoubleClick">
+        <ListView Background="#f0f2f5" ItemsSource="{Binding Projects}" x:Name="lv" MouseDoubleClick="Button_MouseDoubleClick">
+            <ListView.Resources>
+                <Style TargetType="ListViewItem" >
+                    <Setter Property="Template" Value="{StaticResource ListViewItemTemplate1}"/>
+                    <Setter Property="Background" Value="White"/>
+
+                </Style>
+            </ListView.Resources>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition/>
-                            <RowDefinition/>
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="64"/>
                             <ColumnDefinition/>
                             <ColumnDefinition Width="128"/>
                         </Grid.ColumnDefinitions>
-                        <Border Grid.Column="0" Grid.RowSpan="2">
-                            <Border.Background>
+                        <Border Grid.Column="0" Margin="10" Height="44" Width="44" Grid.RowSpan="2" Background="{Binding LocalPath,Converter={StaticResource IconGetter}}">
+                            <!--<Border.Background>
                                 <ImageBrush ImageSource="{Binding IconLocation}"/>
-                            </Border.Background>
+                            </Border.Background>-->
                         </Border>
-                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Name}"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1">
-                            <Run Text="{Binding LocalPath}"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Name}" FontSize="24" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Foreground="Gray">
+                            <Run Text="{Binding LocalPath}" />
                             <Run Text="-"/>
                             <Run Text="{Binding Arguments}"/>
                         </TextBlock>

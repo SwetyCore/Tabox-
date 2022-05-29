@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="/ListViewStyle1.xaml"/>
                 <ResourceDictionary Source="/ButtonStyle1.xaml"/>
                 <ResourceDictionary Source="/ListViewItemStyle2.xaml"/>
+                <ResourceDictionary Source="/ListViewItemTemplate3.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
 

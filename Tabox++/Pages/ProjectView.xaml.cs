@@ -24,13 +24,13 @@ namespace Tabox__.Pages
     public partial class ProjectView : Page
     {
         public VM vm;
-        public List<Lnk.LnkFile> Projs;
+        //public List<Lnk.LnkFile> Projs;
         public ProjectView(List<Lnk.LnkFile> projs)
         {
             InitializeComponent();
             vm  = new VM(NLnkFileConverter.Convert(projs));
             DataContext = vm;
-            Projs = projs;
+            //Projs = projs;
         }
 
         
@@ -69,12 +69,12 @@ namespace Tabox__.Pages
         private void Button_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var selected = lv.SelectedValue as NLnkFile;
-            var selectedIndex = lv.SelectedIndex;
+            //var selectedIndex = lv.SelectedIndex;
             try
             {
                 //if ()
                 //Process.Start(selected.LocalPath, selected.Arguments == null ? "" : selected.Arguments);
-                File.WriteAllBytes("tmp.lnk", Projs[selectedIndex].RawBytes);
+                File.WriteAllBytes("tmp.lnk", selected.lnkFile.RawBytes);
                 runcmd($"start tmp.lnk");
                 //runcmd($"start {selected.SourceFile}");
 
