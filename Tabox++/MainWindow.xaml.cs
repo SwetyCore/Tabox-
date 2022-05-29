@@ -28,6 +28,7 @@ namespace Tabox__
         VM vm = new VM();
 
         public static Dictionary<string, string> map = new Dictionary<string, string>();
+        public static Dictionary<string, string> imap = new Dictionary<string, string>();
         public MainWindow()
         {
             InitializeComponent();
@@ -41,7 +42,14 @@ namespace Tabox__
             {
                 var m = item.Split('|');
                 map[m[0]] = m[1];
+
+                if (m.Count() == 3)
+                {
+                    imap[m[0]] = m[2];
+
+                }
             }
+
         }
 
         public static List<LnkFile> GetLnks(List<JumpList.Custom.Entry> entries)
@@ -82,6 +90,7 @@ namespace Tabox__
             {
                 public string IconPath { get; set; }
                 public string AppName { get; set; }
+                public string appid { get; set; }
 
                 public List<LnkFile> LnkFiles { get; set; }
             }
@@ -94,7 +103,15 @@ namespace Tabox__
                 }
                 return appid;
             }
-
+            public string TryGetIcon(string appid)
+            {
+                var t = @$"Assets\Images\{appid}.ico";
+                if (File.Exists(t))
+                {
+                   return t;
+                }
+                return @"Assets\Images\default.ico";
+            }
 
             public void LoadJumpList()
             {
@@ -128,14 +145,17 @@ namespace Tabox__
                         //{
                         //    continue;
                         //}
-                        if(r.AppId.AppId== "b8ab77100df80ab2")
-                        {
-                            Console.ReadLine();
-                        }
+
 
                         Console.WriteLine(r);
 
-                        ProjectGroups.Add(new ProjectGroup { AppName = TryGetName( r.AppId.AppId) ,LnkFiles= GetLnks( r.Entries)});
+                        ProjectGroups.Add(new ProjectGroup 
+                        { 
+                            AppName = TryGetName( r.AppId.AppId) ,
+                            IconPath=TryGetIcon(r.AppId.AppId) ,
+                            LnkFiles= GetLnks( r.Entries),
+                            appid=r.AppId.AppId
+                        });
 
                     }
                     catch (Exception)
@@ -160,8 +180,21 @@ namespace Tabox__
 
 
                         Console.WriteLine(r);
+                        //foreach (var group in ProjectGroups)
+                        //{
+                        //    if(group.AppName== TryGetName(r.AppId.AppId))
+                        //    {
+                        //        group.LnkFiles.Union(GetLnks(r.DestListEntries));
+                        //        break;
+                        //    }
+                        //}
 
-                        ProjectGroups.Add(new ProjectGroup { AppName =TryGetName( r.AppId.AppId), LnkFiles = GetLnks(r.DestListEntries) });
+                        ProjectGroups.Add(new ProjectGroup { 
+                            AppName = TryGetName(r.AppId.AppId), 
+                            LnkFiles = GetLnks(r.DestListEntries) ,
+                            appid = r.AppId.AppId
+
+                        });
 
                     }
                     catch (Exception)

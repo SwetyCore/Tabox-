@@ -40,7 +40,15 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <svgc:SvgViewbox HorizontalAlignment="Center" IsHitTestVisible="False"  Source="Assets\Images\favicon.svg" Margin="4" Height="56" Width="56"/>
+                            <StackPanel.ToolTip>
+                                <ToolTip Placement ="MousePoint">
+                                    <TextBlock >
+                                        <Run Text="{Binding appid}"/>
+                                    </TextBlock >
+                                </ToolTip >
+                            </StackPanel.ToolTip>
+                            <!--<svgc:SvgViewbox HorizontalAlignment="Center" IsHitTestVisible="False"  Source="Assets\Images\favicon.svg" Margin="4" Height="56" Width="56"/>-->
+                            <Image Height="50" Width="50" Source="{Binding IconPath}" Margin="5"/>
                             <TextBlock  Text="{Binding AppName}" FontSize="16"  VerticalAlignment="Center" Foreground="White"/>
                             <!--<TextBox Text="{Binding AppName}" FontSize="30" Background="Transparent"  VerticalAlignment="Center" Foreground="White"/>-->
 
