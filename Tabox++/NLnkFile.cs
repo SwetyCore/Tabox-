@@ -53,13 +53,36 @@ namespace Tabox__
             var extra = file.ExtraBlocks;
             try
             {
+                foreach (var item in extra)
+                {
+                    try
+                    {
 
-                r = new Dictionary<string, string>
-                    ((new List<ExtensionBlocks.PropertySheet>
-                    (((Lnk.ExtraData.PropertyStoreDataBlock)
-                    (new List<Lnk.ExtraData.ExtraDataBase>(file.ExtraBlocks)[2]))
-                    .PropertyStore.Sheets)[0]).PropertyNames).FirstOrDefault()
-                    .Value;
+                        r = new Dictionary<string, string>
+                            ((new List<ExtensionBlocks.PropertySheet>
+                            (((Lnk.ExtraData.PropertyStoreDataBlock)
+                            item)
+                            .PropertyStore.Sheets)[0]).PropertyNames).FirstOrDefault()
+                            .Value;
+                        if (r == null)
+                        {
+                            r = new Dictionary<string, string>
+                            ((new List<ExtensionBlocks.PropertySheet>
+                            (((Lnk.ExtraData.PropertyStoreDataBlock)
+                            item)
+                            .PropertyStore.Sheets)[1]).PropertyNames).FirstOrDefault()
+                            .Value;
+                        }
+
+                        break;
+                    }
+                    catch
+                    {
+
+                    }
+
+
+                }
 
             }
             catch {
