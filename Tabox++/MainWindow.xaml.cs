@@ -128,7 +128,10 @@ namespace Tabox__
                         //{
                         //    continue;
                         //}
-
+                        if(r.AppId.AppId== "b8ab77100df80ab2")
+                        {
+                            Console.ReadLine();
+                        }
 
                         Console.WriteLine(r);
 

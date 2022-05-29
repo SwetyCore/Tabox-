@@ -30,12 +30,22 @@ namespace Tabox__.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            var lnkfile = value as NLnkFile;
             try
             {
+                if (!string.IsNullOrEmpty(lnkfile.IconLocation))
+                {
+                    return new ImageBrush(new BitmapImage(new Uri(lnkfile.IconLocation)));
 
-                //Bitmap img = System.Drawing.Icon.ExtractAssociatedIcon(value.ToString()).ToBitmap();
+                }
+                else
+                {
 
-                return new ImageBrush(ToBitmapSourceA(IconHelper.GetIcon(value.ToString())));
+                }
+
+                    //Bitmap img = System.Drawing.Icon.ExtractAssociatedIcon(value.ToString()).ToBitmap();
+
+                    return new ImageBrush(ToBitmapSourceA(IconHelper.GetIcon(lnkfile.LocalPath)));
                 //return new 
             }
             catch (Exception ex)
@@ -45,13 +55,13 @@ namespace Tabox__.Converters
                     return new ImageBrush();
 
                 }
-                if (!string.IsNullOrEmpty(value.ToString()))
+                if (!string.IsNullOrEmpty(lnkfile.LocalPath))
                 {
-                    if (File.Exists(value.ToString()))
+                    if (File.Exists(lnkfile.LocalPath))
                     {
 
                         //Bitmap img = System.Drawing.Icon.ExtractAssociatedIcon(value.ToString()).ToBitmap();
-                        System.Drawing.Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(value.ToString());
+                        System.Drawing.Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(lnkfile.LocalPath);
                         var ico = System.Windows.Interop.Imaging.CreateBitmapSourceFromHIcon(icon.Handle, new System.Windows.Int32Rect(0, 0, icon.Width, icon.Height), BitmapSizeOptions.FromEmptyOptions());
                         return new ImageBrush(ico);
 

@@ -12,7 +12,7 @@
     </Page.Resources>
 
     <Grid>
-        <ListView Style="{DynamicResource ListViewStyle1}" Background="#f0f2f5" ItemsSource="{Binding Projects}" x:Name="lv" MouseDoubleClick="Button_MouseDoubleClick">
+        <ListView Style="{DynamicResource ListViewStyle1}" Background="Transparent" ItemsSource="{Binding Projects}" x:Name="lv" MouseDoubleClick="Button_MouseDoubleClick">
             <ListView.Resources>
                 <Style TargetType="ListViewItem" >
                     <Setter Property="Template" Value="{StaticResource ListViewItemTemplate1}"/>
@@ -32,7 +32,7 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="128"/>
                         </Grid.ColumnDefinitions>
-                        <Border Grid.Column="0" Margin="10" Height="44" Width="44" Grid.RowSpan="2" Background="{Binding LocalPath,Converter={StaticResource IconGetter}}">
+                        <Border Grid.Column="0" Margin="10" Height="44" Width="44" Grid.RowSpan="2" Background="{Binding  Converter={StaticResource IconGetter}}">
                             <!--<Border.Background>
                                 <ImageBrush ImageSource="{Binding IconLocation}"/>
                             </Border.Background>-->

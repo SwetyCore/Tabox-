@@ -49,34 +49,71 @@ namespace Tabox__
         public static string GetName(LnkFile  file)
         {
 
-
+            string r = "";
             var extra = file.ExtraBlocks;
-            foreach (var item in extra)
+            try
             {
-                var r = new Dictionary<string, string>
+
+                r = new Dictionary<string, string>
                     ((new List<ExtensionBlocks.PropertySheet>
                     (((Lnk.ExtraData.PropertyStoreDataBlock)
-                    (new List<Lnk.ExtraData.ExtraDataBase>(file.ExtraBlocks).Items[2]))
-                    .PropertyStore.Sheets).Items[0]).PropertyNames)
-                    .Items[0];
+                    (new List<Lnk.ExtraData.ExtraDataBase>(file.ExtraBlocks)[2]))
+                    .PropertyStore.Sheets)[0]).PropertyNames).FirstOrDefault()
+                    .Value;
+
+            }
+            catch {
+                return GetName(Decode(file.LocalPath));
             }
             //return extra;
-            return "";
+            return r;
+        }
+        public static string GetIcon(LnkFile file)
+        {
+            string r = "";
+            var extra = file.ExtraBlocks;
+            try
+            {
+
+                r = new Dictionary<string, string>
+                    ((new List<ExtensionBlocks.PropertySheet>
+                    (((Lnk.ExtraData.PropertyStoreDataBlock)
+                    (new List<Lnk.ExtraData.ExtraDataBase>(file.ExtraBlocks)[0]))
+                    .PropertyStore.Sheets)[0]).PropertyNames).FirstOrDefault()
+                    .Value;
+
+            }
+            catch { }
+            //return extra;
+            return r;
+        }
+
+        public static string Decode(string str)
+        {
+
+            Encoding ec = Encoding.GetEncoding("iso-8859-1");
+            Encoding gbk = Encoding.GetEncoding("GBK");
+            try
+            {
+                return gbk.GetString(ec.GetBytes(str));
+            }
+            catch
+            {
+                return str;
+            }
         }
 
         public static List< NLnkFile> Convert( List<Lnk.LnkFile> lnkFiles)
         {
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-
-            Encoding ec = Encoding.GetEncoding("iso-8859-1");
-            Encoding gbk = Encoding.GetEncoding("GBK");
             //byte[] btArr = ec.GetBytes(str);
             var r = new List<NLnkFile>();
             foreach (var item in lnkFiles)
             {
                 if (item.LocalPath != null)
                 {
-                    if (!File.Exists(item.LocalPath))
+                    var path = Decode(item.LocalPath);
+                    if (!File.Exists(path))
                     {
                         continue;
                     }
@@ -90,19 +127,19 @@ namespace Tabox__
 
                     r.Add(new NLnkFile
                     {
-                        IconLocation = item.IconLocation,
+                        IconLocation = item.IconLocation==null?GetIcon(item):item.IconLocation,
                         RelativePath = item.RelativePath,
                         Name = item.Name==null? GetName(item):item.Name,
                         SourceFile = item.SourceFile,
                         //LocalPath=Encoding.GetEncoding("gb2312") item.LocalPath,
-                        LocalPath = gbk.GetString(ec.GetBytes(item.LocalPath)),
+                        LocalPath = Decode(item.LocalPath),
                         Arguments = item.Arguments,
 
                         lnkFile=item
 
                     });
                 }
-                catch
+                catch(Exception ex)
                 {
                     r.Add(new NLnkFile
                     {
