@@ -1,0 +1,223 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="{x:Type ListBoxItem}" x:Key="ListBox1">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Height" Value="40" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="Storyboard1"/>
+                        <Storyboard x:Key="Selected">
+                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderThickness)" Storyboard.TargetName="border">
+                                <EasingThicknessKeyFrame KeyTime="0" Value="0">
+                                    <EasingThicknessKeyFrame.EasingFunction>
+                                        <CubicEase EasingMode="EaseOut"/>
+                                    </EasingThicknessKeyFrame.EasingFunction>
+                                </EasingThicknessKeyFrame>
+                                <EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="5,0">
+                                    <EasingThicknessKeyFrame.EasingFunction>
+                                        <CubicEase EasingMode="EaseOut"/>
+                                    </EasingThicknessKeyFrame.EasingFunction>
+                                </EasingThicknessKeyFrame>
+                            </ThicknessAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="border">
+                                <EasingColorKeyFrame KeyTime="0" Value="Transparent">
+                                    <EasingColorKeyFrame.EasingFunction>
+                                        <CubicEase EasingMode="EaseOut"/>
+                                    </EasingColorKeyFrame.EasingFunction>
+                                </EasingColorKeyFrame>
+                                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#0b7aba">
+                                    <!--#FF0FB5CF-->
+                                    <EasingColorKeyFrame.EasingFunction>
+                                        <CubicEase EasingMode="EaseOut"/>
+                                    </EasingColorKeyFrame.EasingFunction>
+                                </EasingColorKeyFrame>
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="text1">
+                                <EasingColorKeyFrame KeyTime="0" Value="Black"/>
+                                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="White"/>
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Text2">
+                                <EasingColorKeyFrame KeyTime="0" Value="Black"/>
+                                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="White"/>
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="StopSelect">
+                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderThickness)" Storyboard.TargetName="border">
+                                <EasingThicknessKeyFrame KeyTime="0" Value="5,0">
+                                    <EasingThicknessKeyFrame.EasingFunction>
+                                        <CubicEase EasingMode="EaseOut"/>
+                                    </EasingThicknessKeyFrame.EasingFunction>
+                                </EasingThicknessKeyFrame>
+                                <EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="0">
+                                    <EasingThicknessKeyFrame.EasingFunction>
+                                        <CubicEase EasingMode="EaseOut"/>
+                                    </EasingThicknessKeyFrame.EasingFunction>
+                                </EasingThicknessKeyFrame>
+                            </ThicknessAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="text1">
+                                <EasingColorKeyFrame KeyTime="0" Value="#FF2A17A6"/>
+                                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="White"/>
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="Text2">
+                                <EasingColorKeyFrame KeyTime="0" Value="#FF2A17A6"/>
+                                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="White"/>
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="border">
+                                <EasingColorKeyFrame KeyTime="0" Value="#FF0FB5CF"/>
+                                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="Transparent"/>
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Border x:Name="border" CornerRadius="0" Margin="2" Background="Transparent"  BorderBrush="Transparent" >
+                        <Grid x:Name="grid" Margin="2 0 0 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  FontWeight="{TemplateBinding FontWeight}" Foreground="White"  Name="text1">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat=" ">
+                                        <Binding Path="name" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <TextBlock Grid.Column="1" Name="Text2" VerticalAlignment="Center"  HorizontalAlignment="Right"  Margin="10 0 0 0" Foreground="White" FontWeight="{TemplateBinding FontWeight}">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="歌手：{0}">
+                                        <Binding Path="artists"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </Grid>
+
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Trigger.ExitActions>
+                                <BeginStoryboard x:Name="StopSelect_BeginStoryboard" Storyboard="{StaticResource StopSelect}"/>
+                            </Trigger.ExitActions>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard x:Name="Selected_BeginStoryboard" Storyboard="{StaticResource Selected}"/>
+                            </Trigger.EnterActions>
+                            <Setter Property="FontWeight" Value="ExtraBold" TargetName="text1"/>
+                            <Setter Property="FontWeight" Value="ExtraBold" TargetName="Text2"/>
+                        </Trigger>
+                        <EventTrigger  RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="#72FFFFFF" Duration="0:0:0.3" Storyboard.TargetName="border" Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger  RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="Transparent" Duration="0:0:0.3" Storyboard.TargetName="border" Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type ListBoxItem }" x:Key="DoubleListBoxStyle">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Height" Value="70" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Border  Name="DoubleListItemBorder" CornerRadius="5" Margin="50 5 50 5" Background="Transparent"  BorderBrush="Transparent">
+                        <Grid Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Name="DoubleText1"  Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"   Text="{Binding Lyric_Language_One}">
+                            </TextBlock>
+                            <TextBlock Name="DoubleText2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Text="{Binding Lyric_Language_Two}">
+                            </TextBlock>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Foreground" Value="	#00BFFF"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Trigger>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="LightGray" Duration="0:0:0.3" Storyboard.TargetName="DoubleListItemBorder" Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="Transparent" Duration="0:0:0.3" Storyboard.TargetName="DoubleListItemBorder" Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type ListBoxItem }" x:Key="ListBoxStyle">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Border  Name="DoubleListItemBorder" CornerRadius="5" Margin="40 0 40 0" Background="Transparent"  BorderBrush="Transparent" >
+                        <Grid Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"  >
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Name="DoubleText1"  Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"   Text="{Binding LyricText}">
+                            </TextBlock>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Foreground" Value="	#00BFFF"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Trigger>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="LightGray" Duration="0:0:0.3" Storyboard.TargetName="DoubleListItemBorder" Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="Transparent" Duration="0:0:0.3" Storyboard.TargetName="DoubleListItemBorder" Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
