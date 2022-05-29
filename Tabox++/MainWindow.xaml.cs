@@ -17,6 +17,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using Lnk;
 using Tabox__.Pages;
+using static Tabox__.MainWindow.VM;
 
 namespace Tabox__
 {
@@ -29,6 +30,9 @@ namespace Tabox__
 
         public static Dictionary<string, string> map = new Dictionary<string, string>();
         public static Dictionary<string, string> imap = new Dictionary<string, string>();
+        //只显示具名的
+        public static bool onlyShowNamed = true;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -91,6 +95,7 @@ namespace Tabox__
                 public string IconPath { get; set; }
                 public string AppName { get; set; }
                 public string appid { get; set; }
+                public bool Fixed {get; set; }
 
                 public List<LnkFile> LnkFiles { get; set; }
             }
@@ -124,7 +129,7 @@ namespace Tabox__
                 DirectoryInfo cdpdi = new DirectoryInfo(CustomDestinationsPath);
                 DirectoryInfo adpdi = new DirectoryInfo(AutomaticDestinationsPath);
 
-                ProjectGroups = new ObservableCollection<ProjectGroup>();
+                ProjectGroups = new List<ProjectGroup>();
 
 
 
@@ -141,10 +146,10 @@ namespace Tabox__
 
 
                         //仅包含命名的
-                        //if (!MainWindow.map.ContainsKey(r.AppId.AppId))
-                        //{
-                        //    continue;
-                        //}
+                        if (!MainWindow.map.ContainsKey(r.AppId.AppId)&& onlyShowNamed)
+                        {
+                            continue;
+                        }
 
 
                         Console.WriteLine(r);
@@ -154,7 +159,8 @@ namespace Tabox__
                             AppName = TryGetName( r.AppId.AppId) ,
                             IconPath=TryGetIcon(r.AppId.AppId) ,
                             LnkFiles= GetLnks( r.Entries),
-                            appid=r.AppId.AppId
+                            appid=r.AppId.AppId,
+                            Fixed=false,
                         });
 
                     }
@@ -172,10 +178,10 @@ namespace Tabox__
                         
                         var r = JumpList.JumpList.LoadAutoJumplist(item.FullName);
                         //仅包含命名的
-                        //if (!MainWindow.map.ContainsKey(r.AppId.AppId))
-                        //{
-                        //    continue;
-                        //}
+                        if (!MainWindow.map.ContainsKey(r.AppId.AppId)&& onlyShowNamed)
+                        {
+                            continue;
+                        }
 
 
 
@@ -192,7 +198,10 @@ namespace Tabox__
                         ProjectGroups.Add(new ProjectGroup { 
                             AppName = TryGetName(r.AppId.AppId), 
                             LnkFiles = GetLnks(r.DestListEntries) ,
-                            appid = r.AppId.AppId
+                            appid = r.AppId.AppId,
+                            IconPath = TryGetIcon(r.AppId.AppId),
+                            Fixed = false,
+
 
                         });
 
@@ -206,9 +215,9 @@ namespace Tabox__
 
             }
 
-            private ObservableCollection<ProjectGroup> _projectGroups;
+            private List<ProjectGroup> _projectGroups;
 
-            public ObservableCollection< ProjectGroup> ProjectGroups
+            public List< ProjectGroup> ProjectGroups
             {
                 get { return _projectGroups; }
                 set { SetProperty(ref _projectGroups, value); }
@@ -221,8 +230,18 @@ namespace Tabox__
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var lv = sender as ListView;
+            //var lv = sender as ListView;
             frame.Navigate(new ProjectView(lv.SelectedValue as List<LnkFile>));
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var i = lv.SelectedIndex;
+            vm.ProjectGroups[i].Fixed = true;
+
+            vm.ProjectGroups=vm.ProjectGroups.OrderByDescending(a => a.Fixed).ToList();
+
+
         }
     }
 }

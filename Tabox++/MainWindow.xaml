@@ -27,7 +27,7 @@
                     <TextBlock Text="    Tabox++" FontSize="30"  VerticalAlignment="Center" Foreground="White"/>
                 </StackPanel>
             </Button>
-            <ListView ScrollViewer.VerticalScrollBarVisibility="Disabled" SelectedValuePath="LnkFiles" Grid.Row="1" Background="#001529" BorderThickness="0" ItemsSource="{Binding ProjectGroups}" SelectionChanged="ListView_SelectionChanged">
+            <ListView x:Name="lv" ScrollViewer.VerticalScrollBarVisibility="Disabled" SelectedValuePath="LnkFiles" Grid.Row="1" Background="#001529" BorderThickness="0" ItemsSource="{Binding ProjectGroups}" SelectionChanged="ListView_SelectionChanged">
                 <ListView.Resources>
                     <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemStyle1}">
                         <!--<Setter Property="Style" Value="{DynamicResource ListViewItemStyle1}"/>-->
@@ -37,6 +37,11 @@
                         <Setter Property="Width" Value="300"/>
                     </Style>
                 </ListView.Resources>
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="固定" Icon="🗑️" Click="MenuItem_Click"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

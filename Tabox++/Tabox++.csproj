@@ -21,6 +21,7 @@
     <None Remove="Assets\appidMap.txt" />
     <None Remove="Assets\Fonts\SEGOEICONS.TTF" />
     <None Remove="Assets\Images\1ced32d74a95c7bc.ico" />
+    <None Remove="Assets\Images\44a3621b32122d64.ico" />
     <None Remove="Assets\Images\b8ab77100df80ab2.ico" />
     <None Remove="Assets\Images\d00655d2aa12ff6d.ico" />
     <None Remove="Assets\Images\d356105fac5527ef.ico" />
@@ -65,6 +66,12 @@
     <PackageReference Include="SharpVectors" Version="1.7.7" />
     <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Images\44a3621b32122d64.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
