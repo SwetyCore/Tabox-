@@ -8,7 +8,7 @@
         Title="MainWindow" Height="800" Width="1500">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="252"/>
+            <ColumnDefinition Width="320"/>
             <ColumnDefinition/>
             <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
@@ -34,14 +34,14 @@
                         <Setter Property="Padding" Value="0"/>
                         <Setter Property="HorizontalAlignment" Value="Center"/>
                         <Setter Property="Height" Value="64"/>
-                        <Setter Property="Width" Value="250"/>
+                        <Setter Property="Width" Value="300"/>
                     </Style>
                 </ListView.Resources>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <svgc:SvgViewbox HorizontalAlignment="Center" IsHitTestVisible="False"  Source="Assets\Images\favicon.svg" Margin="4" Height="56" Width="56"/>
-                            <TextBlock Text="{Binding AppName}" FontSize="30"  VerticalAlignment="Center" Foreground="White"/>
+                            <TextBlock  Text="{Binding AppName}" FontSize="16"  VerticalAlignment="Center" Foreground="White"/>
                             <!--<TextBox Text="{Binding AppName}" FontSize="30" Background="Transparent"  VerticalAlignment="Center" Foreground="White"/>-->
 
                         </StackPanel>

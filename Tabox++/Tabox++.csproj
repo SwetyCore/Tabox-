@@ -18,11 +18,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\appidMap.txt" />
     <None Remove="Assets\Fonts\SEGOEICONS.TTF" />
     <None Remove="Assets\Images\favicon.svg" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Assets\appidMap.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Fonts\SEGOEICONS.TTF">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

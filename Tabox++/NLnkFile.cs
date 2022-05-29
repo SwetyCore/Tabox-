@@ -24,6 +24,7 @@ namespace Tabox__
         public LnkFile lnkFile { get; set; }
     }
 
+
     public static class NLnkFileConverter
     {
         public static string GetName(string path)
@@ -43,6 +44,16 @@ namespace Tabox__
             {
                 Console.WriteLine("都不是");
             }
+            return "";
+        }
+        public static string GetName(LnkFile  file)
+        {
+            var extra = file.ExtraBlocks;
+            foreach (var item in extra)
+            {
+
+            }
+            //return extra;
             return "";
         }
 
