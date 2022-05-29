@@ -9,14 +9,17 @@
       Title="ProjectView">
     <Page.Resources>
         <converters:IconGetter x:Key="IconGetter"/>
+        <converters:cardWidthCac x:Key="cardWidthCac"/>
     </Page.Resources>
 
     <Grid>
-        <ListView Style="{DynamicResource ListViewStyle1}" Background="Transparent" ItemsSource="{Binding Projects}" x:Name="lv" MouseDoubleClick="Button_MouseDoubleClick">
+        <ListView Padding="5" Style="{DynamicResource ListViewStyle1}"  Background="Transparent" ItemsSource="{Binding Projects}" x:Name="lv" MouseDoubleClick="Button_MouseDoubleClick">
             <ListView.Resources>
                 <Style TargetType="ListViewItem" >
                     <Setter Property="Template" Value="{StaticResource ListViewItemTemplate1}"/>
                     <Setter Property="Background" Value="White"/>
+                    <Setter Property="Width" Value="{Binding ElementName=lv,Path=ActualWidth,Converter={StaticResource cardWidthCac}}"/>
+                    <Setter Property="Margin" Value="5"/>
 
                 </Style>
             </ListView.Resources>
@@ -24,20 +27,20 @@
                 <DataTemplate>
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition/>
+                            <RowDefinition />
                             <RowDefinition />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="64"/>
                             <ColumnDefinition/>
-                            <ColumnDefinition Width="128"/>
+                            <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
                         <Border Grid.Column="0" Margin="10" Height="44" Width="44" Grid.RowSpan="2" Background="{Binding  Converter={StaticResource IconGetter}}">
                             <!--<Border.Background>
                                 <ImageBrush ImageSource="{Binding IconLocation}"/>
                             </Border.Background>-->
                         </Border>
-                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Name}" FontSize="24" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Margin="0 15 0 0" Text="{Binding Name}" FontSize="24" VerticalAlignment="Center"/>
                         <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Foreground="Gray">
                             <Run Text="{Binding LocalPath}" />
                             <Run Text="-"/>

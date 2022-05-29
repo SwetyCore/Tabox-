@@ -72,6 +72,9 @@ namespace Tabox__
                             item)
                             .PropertyStore.Sheets)[1]).PropertyNames).FirstOrDefault()
                             .Value;
+                        }else if (r == "True")
+                        {
+                            return GetName(Decode(file.LocalPath));
                         }
 
                         break;
