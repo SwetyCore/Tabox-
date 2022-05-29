@@ -48,10 +48,17 @@ namespace Tabox__
         }
         public static string GetName(LnkFile  file)
         {
+
+
             var extra = file.ExtraBlocks;
             foreach (var item in extra)
             {
-
+                var r = new Dictionary<string, string>
+                    ((new List<ExtensionBlocks.PropertySheet>
+                    (((Lnk.ExtraData.PropertyStoreDataBlock)
+                    (new List<Lnk.ExtraData.ExtraDataBase>(file.ExtraBlocks).Items[2]))
+                    .PropertyStore.Sheets).Items[0]).PropertyNames)
+                    .Items[0];
             }
             //return extra;
             return "";
@@ -85,7 +92,7 @@ namespace Tabox__
                     {
                         IconLocation = item.IconLocation,
                         RelativePath = item.RelativePath,
-                        Name = item.Name==null? GetName(item.LocalPath):item.Name,
+                        Name = item.Name==null? GetName(item):item.Name,
                         SourceFile = item.SourceFile,
                         //LocalPath=Encoding.GetEncoding("gb2312") item.LocalPath,
                         LocalPath = gbk.GetString(ec.GetBytes(item.LocalPath)),
