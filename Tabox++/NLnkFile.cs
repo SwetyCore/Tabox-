@@ -56,9 +56,8 @@ namespace Tabox__
                 var r = new Dictionary<string, string>
                     ((new List<ExtensionBlocks.PropertySheet>
                     (((Lnk.ExtraData.PropertyStoreDataBlock)
-                    (new List<Lnk.ExtraData.ExtraDataBase>(file.ExtraBlocks).Items[2]))
-                    .PropertyStore.Sheets).Items[0]).PropertyNames)
-                    .Items[0];
+                    (new List<Lnk.ExtraData.ExtraDataBase>(file.ExtraBlocks)[2]))
+                    .PropertyStore.Sheets)[0]).PropertyNames).ToList()[0];
             }
             //return extra;
             return "";
